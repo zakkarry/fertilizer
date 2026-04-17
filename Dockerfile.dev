@@ -1,4 +1,4 @@
-FROM python:3.11-slim-buster
+FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY src src
 
 RUN apt-get update \
   && echo "----- Installing python requirements" \
-  && pip install uv \
+  && pip install --no-cache-dir uv \
   && uv pip install -r pyproject.toml --system --all-extras \
   && uv pip install -e . --system \
   && echo "----- Preparing directories" \

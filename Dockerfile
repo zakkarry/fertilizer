@@ -1,11 +1,17 @@
-FROM python:3.11-slim-buster
+FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 
 COPY docker_start ./
 
-RUN apt-get update \
-  && echo "----- Installing python requirements" \
+RUN echo "----- Installing build dependencies" \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc
+    
+# Install build dependencies
+RUN echo "----- Installing fertilizer Python package" \
   && pip install fertilizer \
   && echo "----- Preparing directories" \
   && mkdir /config /data /torrents \
