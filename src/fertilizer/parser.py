@@ -55,7 +55,7 @@ def get_origin_tracker(torrent_data: dict) -> Type[RedTracker] | Type[OpsTracker
   if source in OpsTracker.source_flags_for_search() or any(OpsTracker.announce_url() in url for url in announce_url):
     return OpsTracker
 
-  return None
+  return "Not RED/OPS"
 
 
 def calculate_infohash(torrent_data: dict) -> str:

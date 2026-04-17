@@ -17,7 +17,7 @@ class Tracker:
 
   @staticmethod
   def reciprocal_tracker():
-    raise NotImplementedError
+    return [b"Not RED/OPS"]
 
 
 class OpsTracker(Tracker):

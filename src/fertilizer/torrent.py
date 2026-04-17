@@ -49,7 +49,7 @@ def generate_new_torrent_from_file(
     input_infohashes = {}
   source_torrent_data, source_tracker = __get_bencoded_data_and_tracker(source_torrent_path)
   new_torrent_data = copy.deepcopy(source_torrent_data)
-  new_tracker = source_tracker.reciprocal_tracker()
+  new_tracker = RedTracker
   new_tracker_api = __get_new_tracker_api(new_tracker, red_api, ops_api)
   stored_api_response = None
 

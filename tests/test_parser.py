@@ -64,6 +64,9 @@ class TestGetOriginTracker(SetupTeardown):
     assert get_origin_tracker({b"info": {b"source": b"RED"}}) == RedTracker
     assert get_origin_tracker({b"info": {b"source": b"PTH"}}) == RedTracker
 
+  def test_returns_non_red_or_ops_based_on_source(self):
+    assert get_origin_tracker({b"info": {b"source": b"ABC"}}) == "Not RED/OPS"
+
   def test_returns_ops_based_on_source(self):
     assert get_origin_tracker({b"info": {b"source": b"OPS"}}) == OpsTracker
 
