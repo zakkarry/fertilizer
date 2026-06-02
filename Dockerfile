@@ -2,7 +2,8 @@ FROM python:3.11-slim-bookworm
 
 WORKDIR /app
 
-COPY docker_start ./
+COPY pyproject.toml docker_start ./
+COPY src src
 
 RUN echo "----- Installing build dependencies" \
   && apt-get update \
@@ -10,9 +11,10 @@ RUN echo "----- Installing build dependencies" \
     build-essential \
     gcc
     
-# Install build dependencies
-RUN echo "----- Installing fertilizer Python package" \
-  && pip install fertilizer \
+RUN echo "----- Installing python requirements" \
+  && pip install --no-cache-dir uv \
+  && uv pip install -r pyproject.toml --system --all-extras \
+  && uv pip install -e . --system \
   && echo "----- Preparing directories" \
   && mkdir /config /data /torrents \
   && echo "----- Cleanup" \
